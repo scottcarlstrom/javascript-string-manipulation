@@ -1,17 +1,17 @@
 // Create a tagged template lf`...` that formats text using LF line endings.
 const lf = (strings, ...values) => {
   return strings.reduce((result, literal, index) => {
-    //const transformedString = transformLineEnding(literal, LineEndings.LF);
+    const transformedString = transformLineEnding(literal, LineEndings.LF);
 
-    // const transformedValue = (
-    //   values[index] != null
-    //   ? transformedLineEnding(values[index], LineEndings.LF)
-    //   : ""
-    // );
+    const transformedValue = (
+      values[index] != null
+      ? transformLineEnding(values[index], LineEndings.LF)
+      : ""
+    );
     
-    let value = (values[index] != null ? values[index] : "");
-    return `${result}${literal}${value}`;
-  });
+    //let value = (values[index] != null ? values[index] : "");
+    return `${result}${transformedString}${transformedValue}`;
+  }, "");
 };
 
 // Create a tagged template cr`...` that formats text using CR line endings.
