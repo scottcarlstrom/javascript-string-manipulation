@@ -15,10 +15,36 @@ const lf = (strings, ...values) => {
 };
 
 // Create a tagged template cr`...` that formats text using CR line endings.
-var cr = () => {};
+const cr = (strings, ...values) => {
+  return strings.reduce((result, literal, index) => {
+    const transformedString = transformLineEnding(literal, LineEndings.cr);
+
+    let transformedValue = (values[index] != null ? values[index] : "");
+
+    if (!Object.getOwnPropertySymbols(transformedValue).includes(disableConverter)) {
+      transformedValue = transformLineEnding(transformedValue, LineEndings.cr);
+    }
+    
+    //let value = (values[index] != null ? values[index] : "");
+    return `${result}${transformedString}${transformedValue}`;
+  }, "");
+};
 
 // Create a tagged template crlf`...` that formats text using CRLF line endings.
-var crlf = () => {};
+const crlf = (strings, ...values) => {
+  return strings.reduce((result, literal, index) => {
+    const transformedString = transformLineEnding(literal, LineEndings.CRLF);
+
+    let transformedValue = (values[index] != null ? values[index] : "");
+
+    if (!Object.getOwnPropertySymbols(transformedValue).includes(disableConverter)) {
+      transformedValue = transformLineEnding(transformedValue, LineEndings.CRLF);
+    }
+    
+    //let value = (values[index] != null ? values[index] : "");
+    return `${result}${transformedString}${transformedValue}`;
+  }, "");
+};
 
 const transformLineEnding = (string, lineEnding) => {
   const {replaceCR, replaceCRLF, replaceLF} = LineEndingReplacements
