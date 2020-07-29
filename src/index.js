@@ -17,12 +17,12 @@ const lf = (strings, ...values) => {
 // Create a tagged template cr`...` that formats text using CR line endings.
 const cr = (strings, ...values) => {
   return strings.reduce((result, literal, index) => {
-    const transformedString = transformLineEnding(literal, LineEndings.cr);
+    const transformedString = transformLineEnding(literal, LineEndings.CR);
 
     let transformedValue = (values[index] != null ? values[index] : "");
 
     if (!Object.getOwnPropertySymbols(transformedValue).includes(disableConverter)) {
-      transformedValue = transformLineEnding(transformedValue, LineEndings.cr);
+      transformedValue = transformLineEnding(transformedValue, LineEndings.CR);
     }
     
     //let value = (values[index] != null ? values[index] : "");
