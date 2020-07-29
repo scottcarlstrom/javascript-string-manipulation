@@ -23,6 +23,7 @@ describe("CRLF Converter", () => {
       const result = lf`Hello \r\n\r\nthere.`;
 
       // Use `String.prototype.includes()`
+      assert(result.includes("Hello \nthere."));
     });
   });
 });
