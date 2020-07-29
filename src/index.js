@@ -3,11 +3,11 @@ const lf = (strings, ...values) => {
   return strings.reduce((result, literal, index) => {
     const transformedString = transformLineEnding(literal, LineEndings.LF);
 
-    const transformedValue = (
-      values[index] != null
-      ? transformLineEnding(values[index], LineEndings.LF)
-      : ""
-    );
+    let transformedValue = (values[index] != null ? values[index] : "");
+
+    if (!Object.getOwnPropertySymbols(transformedValue).includes(disableConverter)) {
+      transformedValue = transformLineEnding(transformedValue, LineEndings.LF);
+    }
     
     //let value = (values[index] != null ? values[index] : "");
     return `${result}${transformedString}${transformedValue}`;
