@@ -16,7 +16,7 @@ describe("CRLF Converter", () => {
       const result = lf`Hello there.\r\n`;
 
       // Use `String.prototype.endsWith()`
-      assert(result.endsWith("there\n"));
+      assert(result.endsWith("there.\n"));
     });
 
     it("should replace CRLF in the middle of a string", () => {
